@@ -37,9 +37,13 @@ jobs:
       run: | 
         echo "  DB_PASSWORD: \"${{ secrets.PRODUCTION_DATABASE_PASSWORD }}\" " >> app.yaml
         more app.yaml
+    - name: Set app secret key
+      with: 
+         super_secret: ${{ secrets.APP_SK }}
+    
     - name: Deploy to Google App Engine
       uses: google-github-actions/deploy-appengine@main
       with:
-        credentials: ${{ secrets.GAE_SA_KEY }}
+        credentials: ${{ secrets.GAE_AZ}}
     - name: Cleanup Old Versions on Google App Engine 
       run: gcloud app versions delete --quiet `gcloud app versions list --format="value(id)[terminator=' ']" --filter="traffic_split=0"`
