@@ -1,4 +1,4 @@
-from great_project.website import app
+from appraisal_report_app import app
 
 
 def test_index():
