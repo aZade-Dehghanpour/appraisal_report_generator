@@ -36,6 +36,7 @@ jobs:
     - name: Prepare Deployment 
       run: | 
         echo "  DB_PASSWORD: \"${{ secrets.PRODUCTION_DATABASE_PASSWORD }}\" " >> app.yaml
+        echo "  SECRET_KEY: \"${{ secrets.APP_SK }}\" " >> app.yaml
         more app.yaml
  
     
