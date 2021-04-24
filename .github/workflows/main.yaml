@@ -37,9 +37,7 @@ jobs:
       run: | 
         echo "  DB_PASSWORD: \"${{ secrets.PRODUCTION_DATABASE_PASSWORD }}\" " >> app.yaml
         more app.yaml
-    - name: Set app secret key
-      with: 
-         super_secret: ${{ secrets.APP_SK }}
+ 
     
     - name: Deploy to Google App Engine
       uses: google-github-actions/deploy-appengine@main
