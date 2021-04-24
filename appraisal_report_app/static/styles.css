@@ -1,6 +1,8 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 2rem;
+    background-color: #212121;
+    color: white;
 }
 
 .banner {
@@ -14,7 +16,20 @@ footer {
     text-align: center;
 }
 
-.button{
-    color: antiquewhite;
-    background-color:firebrick;
+.centralize{
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 25%;
+}
+.button_style{
+    border-radius: 25px;
+    background-color: #212121;
+    color: darkgray;
+    border-color: darkgray;
+    font-size: 2rem;
 }

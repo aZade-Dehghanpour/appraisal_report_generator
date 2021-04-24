@@ -1,0 +1,16 @@
+{%extends "layout.html"%}
+
+    {% block title %}
+        Home Page
+    {% endblock %}
+
+
+    {% block content %}
+    <body class = 'text-center'>
+        <div class = 'container'>
+            <h1>You have no reports yet</h1>
+            <a href = "{{url_for('upload_file')}}" class = "btn btn-primary">Create a Report</a>
+        </div>
+    </body>
+        
+    {% endblock %}

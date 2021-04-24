@@ -7,7 +7,6 @@ from appraisal_report_app.forms import RegisterForm, LoginForm, UploadFileForm
 from appraisal_report_app.models import User, SkillScores
 from appraisal_report_app import db
 from flask_login import login_user, logout_user, login_required
-from appraisal_report_app.controllers import manipulate
 
 @app.route('/', methods=["GET","POST"])
 def greet():
@@ -15,7 +14,6 @@ def greet():
 
 @app.route('/home', methods=["GET","POST"])
 def home_page():
-    
     return render_template('home.html')
 
 @app.route('/upload_file', methods=['GET', 'POST'])
@@ -78,27 +76,6 @@ def create_reports():
     return render_template("reports.html",name = name, appraisal_id = appraisal_id, 
         self_labels = self_labels,self_data = self_data, peer_labels = peer_labels, peer_data = peer_data )
 
-# @app.route('/chart', methods=["GET","POST"])
-# @login_required
-# def plot_chart():
-    
-    
-
-    # name = request.form.get("name")
-    # test(name)
-    # # report_data = ExcelSheet("Data/DB-feedback.xlsx", employee_name= name)
-    # # clean_report_data = report_data.clean_sheet()
-
-    # # employee_report = AppraisalReport(clean_report_data,report_data.employee_name)
-    # # # print(employee_report.levels_importance_weigth)
-    # # # print(employee_report.skills_level_count)
-    # # employee_weighted_report = employee_report.weigthed_skill_evaluation()
-    # # employee_report.score_treshhold_by_skill()
-    # # employee_report.weigthed_skill_evaluation()
-    # # employee_report.radar_chart_input()
-    # # employee_report.build_radar_chart()
-    
-    #return render_template('chart.html', path = "static/imgs/assessment_chat.png")
 
 @app.route('/create_account', methods=["POST","GET"])
 def create_account():

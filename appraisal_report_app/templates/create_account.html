@@ -1,0 +1,43 @@
+{%extends 'layout.html'%}
+
+{%block title%}
+    Create Account
+{%endblock%}
+
+{%block content%}
+    <body class = 'text-center'>
+        <div class = 'container'>
+            <form method='POST' class='form-register' style="color: white">
+                {{form.hidden_tag()}}
+                <h1 class="h3 mb-3 font-weight-normal">
+                    Please Create your Account
+                </h1>
+                <br>
+                    {{form.first_name.label()}}
+                    {{form.first_name(class = 'form-control', placeholder='Enter First Name')}}
+
+                    {{form.last_name.label()}}
+                    {{form.last_name(class='form-control', placeholder='Enter Last Name')}}
+
+                    {{form.username.label()}}
+                    {{form.username(class='form-control', placeholder='Use your Email Address')}}
+
+                    {{form.password1.label()}}
+                    {{form.password1(class='form-control', placeholder='Enter Password')}}
+
+                    {{form.password2.label()}}
+                    {{form.password2(class='form-control', placeholder='Repeat Password')}}
+                <br>   
+                    {{form.submit_button(class='btn btn-lg btn-block btn-primary')}}
+                <br>
+                <div class="checkbox mb-3">
+                    <h6>Already have an account?</h6>
+                    <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Sign In</a>
+                    
+                 </div>
+
+            </form>
+        </div>
+    </body>
+
+{%endblock%}

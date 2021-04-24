@@ -1,0 +1,67 @@
+{%extends 'layout.html'%}
+
+{% block title %}
+    Upload File
+{% endblock %}
+
+{% block content %}
+    <body>
+        <form  method = "POST" enctype=multipart/form-data>
+            {{form.hidden_tag()}}
+
+            <fieldset>
+                <legend>People Lead</legend>
+                <div class = "form-row">
+                    <div class = "col-sm-4">
+                        
+                        {{form.people_lead_first_name( class = 'form-control', placeholder='First Name')}}
+                    </div>
+                    <div class = 'col-sm-4'>
+                        {{form.people_lead_last_name(class = 'form-control', placeholder = 'Last Name')}}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Employee</legend>
+                <div class = "form-row">
+                    <div class = "col-sm-4">
+                        {{form.employee_first_name(class = 'form-control', placeholder='First Name')}}
+                    </div>
+                    <div class = "col-sm-4">
+                        {{form.employee_last_name(class = 'form-control', placeholder='First Name')}}
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Appraisal Info</legend>
+                <div class="form-group">
+
+                    <div class = "form-row">
+
+                        <div class = "col-sm-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name = "excel_file" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                              </div>
+                        </div>
+
+                        <div class = "col-sm-4">
+                            {{form.appraisal_year(class = 'form-control', placeholder='Appraisal Yeal')}}
+                        </div>
+
+                        <div class = ' col form-check-inline'>
+                            {{form.appraisal_type(class = ' form-check-inline radio-inline', style="list-style:none")}}
+
+                        </div>
+                    
+                </div>
+            </fieldset>
+            
+            <br>   
+                    {{form.submit_button(class='btn  btn-primary')}}
+                <br>
+
+        </form>
+    </body>
+{% endblock %}

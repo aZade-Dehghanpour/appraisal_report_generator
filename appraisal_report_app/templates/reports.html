@@ -1,0 +1,96 @@
+{%extends 'layout.html'%}
+{% block title %}
+    report chart
+{% endblock %}
+
+{% block libraries%}
+
+
+      {%endblock%}
+
+{% block content %}
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div>
+            <canvas id="radarChart" width = '600' height='600'></canvas>
+            <script>
+                var ctx = document.getElementById("radarChart").getContext('2d');
+                var my_radar_chart = new Chart(ctx, {
+                    type: 'radar',
+                    data : {
+                        labels : {{self_labels | safe}},
+                        datasets : [
+                            {
+                                label: 'Peer Assessment Level',
+                                data: {{peer_data | safe}},
+                                fill: false,
+                                borderColor: "rgb(97,179,188)",
+                                lineTension: 0.1
+
+
+                            },
+                            {
+                                label:'Self Assessment Level',
+                                data: {{self_data | safe}},
+                                fill:false,
+                                borderColor: 'rgb(168,44,96)',
+                                lineTension: 0.1
+                                
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: false,
+                        
+                        scales:{
+
+                            startAngle: 30,
+                            
+                    
+
+                            r:{
+                                min: 0,
+                                max: 5,
+                                ticks:{
+                                    
+                                    stepSize: 1,
+                                    
+                                    fontSize: 22,
+                                    
+                                },
+
+                            
+                            angleLines:{
+                                display: true,
+                                color: 'white',
+                                lineWidth: 0.2,
+                                
+
+                            },
+                            grid:{
+                                circular: true,
+                                color: 'white',
+                                lineWidth: 0.2,
+                                border: false
+                                
+                            },
+
+                            
+
+                            }
+                            
+                            
+                        }
+                        
+                                }
+
+
+
+                });
+            </script>
+        </div>
+
+
+        
+    </body>
+{% endblock %}
