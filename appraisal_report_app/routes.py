@@ -81,7 +81,10 @@ def create_reports():
 @app.route('/create_account', methods=["POST","GET"])
 def create_account():
     
-    form = RegisterForm()
+    try:
+        form = RegisterForm()
+    except Exception error_msg:
+        record_log('register form', error_msg)
         
     if form.validate_on_submit():
         try: 
