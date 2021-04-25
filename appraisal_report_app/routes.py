@@ -24,7 +24,6 @@ def upload_file():
 
     if form.validate_on_submit():
         if request.method =='POST':
-        
             if request.files:
                 excel_file = request.files["excel_file"]
                 excel_file_name = secure_filename(excel_file.filename)
