@@ -1,0 +1,1 @@
+Otherwise the folder won't appear on git
