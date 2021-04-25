@@ -1,7 +1,7 @@
 import os
 
 DEBUG = False
-UPLOAD_FOLDER = "/Users/az_dnpr/CODE/CODE Spring20/SE and web/se-foundation-final-project/appraisal_report_generator/appraisal_report_app/upload_folder"
+UPLOAD_FOLDER = 'appraisal_report_generator/appraisal_report_app/upload_folder'
 SECRET_KEY = os.environ["SECRET_KEY"]   
 PUBLIC_IP_ADDRESS= os.environ["PUBLIC_IP_ADDRESS"]
 DB_PASSWORD = os.environ["DB_PASSWORD"]
