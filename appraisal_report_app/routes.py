@@ -81,10 +81,7 @@ def create_reports():
 @app.route('/create_account', methods=["POST","GET"])
 def create_account():
     
-    try:
-        form = RegisterForm()
-    except Exception as error_msg:
-        record_log('register form', error_msg)
+    form = RegisterForm()
         
     if form.validate_on_submit():
         try: 
@@ -102,6 +99,7 @@ def create_account():
     if form.errors !={}:
         for error_msg in form.errors.values(): #this can be logged
             flash(f'There was an error with creating a user: {error_msg}', category = 'danger')
+    
     return render_template('create_account.html', form = form)
         
 
