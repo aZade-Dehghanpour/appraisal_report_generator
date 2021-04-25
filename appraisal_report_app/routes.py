@@ -83,7 +83,7 @@ def create_account():
     
     try:
         form = RegisterForm()
-    except Exception error_msg:
+    except Exception as error_msg:
         record_log('register form', error_msg)
         
     if form.validate_on_submit():
