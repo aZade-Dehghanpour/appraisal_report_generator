@@ -7,6 +7,8 @@ from appraisal_report_app.forms import RegisterForm, LoginForm, UploadFileForm
 from appraisal_report_app.models import User, SkillScores
 from appraisal_report_app import db
 from flask_login import login_user, logout_user, login_required
+from appraisal_report_app.controllers.record_logs import record_log
+
 
 @app.route('/', methods=["GET","POST"])
 def greet():
@@ -80,18 +82,29 @@ def create_reports():
 def create_account():
     
     form = RegisterForm()
-    if form.validate_on_submit():
-        user_to_create = User(first_name = form.first_name.data, last_name = form.last_name.data, username=form.username.data, 
-        password=form.password1.data)
-        db.session.add(user_to_create)
-        db.session.commit()
-        login_user(user_to_create)
-        flash(f"Account was successfully created! You are now logged in as:{user_to_create.first_name} {user_to_create.last_name}", category = 'success')
-        return redirect(url_for('home_page'))
-    if form.errors !={}:
-        for error_msg in form.errors.values(): #this can be logged
-            flash(f'There was an error with creating a user: {error_msg}', category = 'danger')
-    return render_template('create_account.html', form = form)
+    try:
+        try:
+            if form.validate_on_submit():
+                user_to_create = User(first_name = form.first_name.data, last_name = form.last_name.data, username=form.username.data, 
+                password=form.password1.data)
+                db.session.add(user_to_create)
+                db.session.commit()
+                login_user(user_to_create)
+                flash(f"Account was successfully created! You are now logged in as:{user_to_create.first_name} {user_to_create.last_name}", category = 'success')
+                return redirect(url_for('home_page'))
+        except Exception as error_message:
+            record_log(1, error_message)
+        try:
+            if form.errors !={}:
+                for error_msg in form.errors.values(): #this can be logged
+                    flash(f'There was an error with creating a user: {error_msg}', category = 'danger')
+            return render_template('create_account.html', form = form)
+        except Exception as error_message:
+            record_log(2, error_message)
+
+    except Exception as error_message:
+        record_log(3, error_message)
+
 
 @app.route('/login', methods = ['GET','POST'])
 def login_page():
