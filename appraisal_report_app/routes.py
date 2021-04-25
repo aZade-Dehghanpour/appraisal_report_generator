@@ -93,30 +93,39 @@ def create_account():
                 flash(f"Account was successfully created! You are now logged in as:{user_to_create.first_name} {user_to_create.last_name}", category = 'success')
                 return redirect(url_for('home_page'))
         except Exception as error_message:
-            record_log(1, error_message)
+            record_log('ca 1', error_message)
         try:
             if form.errors !={}:
                 for error_msg in form.errors.values(): #this can be logged
                     flash(f'There was an error with creating a user: {error_msg}', category = 'danger')
             return render_template('create_account.html', form = form)
         except Exception as error_message:
-            record_log(2, error_message)
+            record_log('ca 2', error_message)
 
     except Exception as error_message:
-        record_log(3, error_message)
+        record_log('ca 3', error_message)
 
 
 @app.route('/login', methods = ['GET','POST'])
 def login_page():
-    form = LoginForm()
-    if form.validate_on_submit():
-        attempted_user = User.query.filter_by(username = form.username.data).first()
-        if attempted_user and attempted_user.check_password(attempted_password = form.password.data):
-            login_user(attempted_user)
-            flash(f"You are successfully logged in as:{attempted_user.first_name} {attempted_user.last_name}", category = 'success')
-            return redirect(url_for('home_page'))
-        else:
-            flash('Username and password are not a match. Please try again', category = 'danger')
+    try:
+        try:
+            form = LoginForm()
+            if form.validate_on_submit():
+                attempted_user = User.query.filter_by(username = form.username.data).first()
+                if attempted_user and attempted_user.check_password(attempted_password = form.password.data):
+                    login_user(attempted_user)
+                    flash(f"You are successfully logged in as:{attempted_user.first_name} {attempted_user.last_name}", category = 'success')
+                    return redirect(url_for('home_page'))
+        except Exception as error_message:
+            record_log('lo 1', error_message)
+        try:    
+            else:
+                flash('Username and password are not a match. Please try again', category = 'danger')
+        except Exception as error_message:
+            record_log('lo 2', error_message)
+    except Exception as error_message:
+        record_log('lo 3', error_message)
     #if form.errors != {}:
     
     return render_template('login_page.html', form=form)
