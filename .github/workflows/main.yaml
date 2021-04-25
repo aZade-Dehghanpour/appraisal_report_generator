@@ -39,10 +39,7 @@ jobs:
         echo "  PUBLIC_IP_ADDRESS: \"${{ secrets.PUBLIC_IP_ADDRESS }}\" " >> app.yaml
         echo "  DB_PASSWORD: \"${{ secrets.DB_PASSWORD }}\" " >> app.yaml
         echo "  DB_NAME: \"${{ secrets.DB_NAME }}\" " >> app.yaml
-        echo "  PROJECT_ID: \"${{ secrets.PROJECT_ID }}\" " >> app.yaml
         echo "  INSTANCE_NAME: \"${{ secrets.INSTANCE_NAME }}\" " >> app.yaml
-        echo "  UPLOAD_FOLDER: \"${{ secrets.UPLOAD_FOLDER }}\" " >> app.yaml
-
         more app.yaml
  
     
