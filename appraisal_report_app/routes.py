@@ -83,8 +83,9 @@ def create_account():
     
     form = RegisterForm()
     try:
-        try:
-            if form.validate_on_submit():
+        
+        if form.validate_on_submit():
+            try: 
                 user_to_create = User(first_name = form.first_name.data, last_name = form.last_name.data, username=form.username.data, 
                 password=form.password1.data)
                 db.session.add(user_to_create)
@@ -92,15 +93,16 @@ def create_account():
                 login_user(user_to_create)
                 flash(f"Account was successfully created! You are now logged in as:{user_to_create.first_name} {user_to_create.last_name}", category = 'success')
                 return redirect(url_for('home_page'))
-        except Exception as error_message:
-            record_log('ca 1', error_message)
-        try:
-            if form.errors !={}:
+            except Exception as error_message:
+                record_log('ca 1', error_message)
+        
+        if form.errors !={}:
+            try:
                 for error_msg in form.errors.values(): #this can be logged
                     flash(f'There was an error with creating a user: {error_msg}', category = 'danger')
-            return render_template('create_account.html', form = form)
-        except Exception as error_message:
-            record_log('ca 2', error_message)
+                return render_template('create_account.html', form = form)
+            except Exception as error_message:
+                record_log('ca 2', error_message)
 
     except Exception as error_message:
         record_log('ca 3', error_message)
@@ -109,21 +111,23 @@ def create_account():
 @app.route('/login', methods = ['GET','POST'])
 def login_page():
     try:
-        try:
-            form = LoginForm()
-            if form.validate_on_submit():
+        
+        form = LoginForm()
+        if form.validate_on_submit():
+            try:
                 attempted_user = User.query.filter_by(username = form.username.data).first()
                 if attempted_user and attempted_user.check_password(attempted_password = form.password.data):
                     login_user(attempted_user)
                     flash(f"You are successfully logged in as:{attempted_user.first_name} {attempted_user.last_name}", category = 'success')
                     return redirect(url_for('home_page'))
-        except Exception as error_message:
-            record_log('lo 1', error_message)
-        try:    
-            else:
+            except Exception as error_message:
+                record_log('lo 1', error_message)
+           
+        else:
+            try:
                 flash('Username and password are not a match. Please try again', category = 'danger')
-        except Exception as error_message:
-            record_log('lo 2', error_message)
+            except Exception as error_message:
+                record_log('lo 2', error_message)
     except Exception as error_message:
         record_log('lo 3', error_message)
     #if form.errors != {}:
