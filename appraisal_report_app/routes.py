@@ -94,7 +94,8 @@ def create_account():
             return redirect(url_for('home_page'))
         
         except Exception as error_message:
-            record_log('ca 1', error_message)
+            return redirect(url_for('home_page', error = error_message))
+            #record_log('ca 1', error_message)
     
     if form.errors !={}:
         for error_msg in form.errors.values(): #this can be logged
@@ -115,7 +116,8 @@ def login_page():
                 flash(f"You are successfully logged in as:{attempted_user.first_name} {attempted_user.last_name}", category = 'success')
                 return redirect(url_for('home_page'))
         except Exception as error_message:
-            record_log('lo 1', error_message)
+            #record_log('lo 1', error_message)
+            print('fuck')
         
     else:
         flash('Username and password are not a match. Please try again', category = 'danger')

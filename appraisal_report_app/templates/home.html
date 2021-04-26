@@ -11,6 +11,9 @@
             <h1>You have no reports yet</h1>
             <a href = "{{url_for('upload_file')}}" class = "btn btn-primary">Create a Report</a>
         </div>
+        {%if error%}
+            <p class="error">{{error}}</p>
+        {% endif %}
     </body>
         
     {% endblock %}
