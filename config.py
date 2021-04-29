@@ -2,7 +2,7 @@ import os
 import logging
 
 DEBUG = False
-UPLOAD_FOLDER = 'appraisal_report_app/upload_folder/'
+#UPLOAD_FOLDER = 'appraisal_report_app/upload_folder/'
 SECRET_KEY = os.getenv("SECRET_KEY") 
 PUBLIC_IP_ADDRESS= os.getenv("PUBLIC_IP_ADDRESS")
 DB_PASSWORD = os.getenv("DB_PASSWORD")

@@ -1,0 +1,2 @@
+bucket name : upload_folder_appraisal_report_app
+location: europe-west3
