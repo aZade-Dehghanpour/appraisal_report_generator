@@ -5,7 +5,7 @@ from flask import render_template, redirect, url_for, flash, request, send_file
 from appraisal_report_app.controllers.excel_sheet import clean_sheet,people_lead_record,employee_record,appraisal_record, skill_assessment_record
 from appraisal_report_app.forms import RegisterForm, LoginForm, UploadFileForm
 from appraisal_report_app.models import User, SkillScores
-from appraisal_report_app import db
+from appraisal_report_app import db, bucket
 from flask_login import login_user, logout_user, login_required
 from appraisal_report_app.controllers.record_logs import record_log
 
@@ -29,8 +29,13 @@ def upload_file():
             if request.files:
                 excel_file = request.files["excel_file"]
                 excel_file_name = secure_filename(excel_file.filename)
-                excel_file_path = os.path.join(app.config['UPLOAD_FOLDER'], excel_file_name)
-                excel_file.save(excel_file_path)
+                #excel_file_path = os.path.join(app.config['UPLOAD_FOLDER'], excel_file_name)
+                #excel_file.save(excel_file_path)
+
+                # uploading excel file on Google Cloud storage
+                excel_file_path = "%s/%s"%('upload_folder',excel_file_name)
+                blob = bucket.blob(excel_file_path)
+                blob.upload_from_file(excel_file)
                 flash('successfully uploaded', category = 'success')
 
                 employee_name = form.employee_first_name.data+" "+form.employee_last_name.data
