@@ -5,7 +5,8 @@ from flask import render_template, redirect, url_for, flash, request, send_file
 from appraisal_report_app.controllers.excel_sheet import clean_sheet,people_lead_record,employee_record,appraisal_record, skill_assessment_record
 from appraisal_report_app.forms import RegisterForm, LoginForm, UploadFileForm
 from appraisal_report_app.models import User, SkillScores
-from appraisal_report_app import db, bucket
+from appraisal_report_app import db
+from appraisal_report_generator.config import bucket
 from flask_login import login_user, logout_user, login_required
 from appraisal_report_app.controllers.record_logs import record_log
 
