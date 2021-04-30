@@ -4,7 +4,6 @@ from flask import request
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 import logging
-from gcloud import storage
 
 app = Flask(__name__,instance_relative_config= True)
 app.config.from_object('config')

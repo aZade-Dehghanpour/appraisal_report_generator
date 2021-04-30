@@ -1,5 +1,7 @@
 import os
 import logging
+from gcloud import storage
+
 
 DEBUG = False
 #UPLOAD_FOLDER = 'appraisal_report_app/upload_folder/'
