@@ -1,6 +1,6 @@
 import os
 import logging
-from google.cloud import storage
+from gcloud import storage
 from google.auth import app_engine
 
 
