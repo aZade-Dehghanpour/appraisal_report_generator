@@ -42,8 +42,8 @@ jobs:
         echo "  INSTANCE_NAME: \"${{ secrets.INSTANCE_NAME }}\" " >> app.yaml
         echo "  INSTANCE_CONNECTION_NAME: \"${{ secrets.INSTANCE_CONNECTION_NAME }}\" " >> app.yaml
         echo "  GA_CREDENTIALS: \"${{ secrets.GA_CREDENTIALS }}\" " >> app.yaml
+        echo "  GOOGLE_APPLICATION_CREDENTIALS: \"${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}\" " >> app.yaml
         more app.yaml
-    
     - name: Deploy to Google App Engine
       uses: google-github-actions/deploy-appengine@main
       with:
