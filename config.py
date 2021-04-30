@@ -1,6 +1,7 @@
 import os
 import logging
 from gcloud import storage
+from google.auth import app_engine
 
 
 DEBUG = False
@@ -17,7 +18,7 @@ SQLALCHEMY_ECHO = False
 #SQLALCHEMY_DATABASE_URI = f"mysql+mysqldb://Report_Generator_App:{DB_PASSWORD}@{PUBLIC_IP_ADDRESS}/{DB_NAME}?unix_socket=/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
 SQLALCHEMY_DATABASE_URI = f"mysql+mysqldb://Report_Generator_App:{DB_PASSWORD}@/{DB_NAME}?unix_socket=/cloudsql/{INSTANCE_CONNECTION_NAME}"
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-CREDENTIALS = os.getenv('GAE_AZ')
+CREDENTIALS = app_engine.Credentials()
 client = storage.Client(project = 'appraisal-report-app', credentials = CREDENTIALS)
 bucket = client.get_bucket('upload_folder_appraisal_report_app')
 
