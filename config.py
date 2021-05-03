@@ -21,7 +21,7 @@ SQLALCHEMY_DATABASE_URI = f"mysql+mysqldb://Report_Generator_App:{DB_PASSWORD}@/
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 #gcp_json_credentials_dict = os.getenv("GA_CREDENTIALS")
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-client = storage.Client.from_service_account_json(GOOGLE_APPLICATION_CREDENTIALS)
+client = storage.Client()
 bucket = client.get_bucket('upload_folder_appraisal_report_app')
 
 
