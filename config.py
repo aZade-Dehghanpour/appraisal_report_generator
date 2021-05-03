@@ -20,8 +20,9 @@ SQLALCHEMY_ECHO = False
 SQLALCHEMY_DATABASE_URI = f"mysql+mysqldb://Report_Generator_App:{DB_PASSWORD}@/{DB_NAME}?unix_socket=/cloudsql/{INSTANCE_CONNECTION_NAME}"
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 #gcp_json_credentials_dict = os.getenv("GA_CREDENTIALS")
-GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-client = storage.Client()
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+client = storage.Client.from_service_account_json(GOOGLE_APPLICATION_CREDENTIALS)
 bucket = client.get_bucket('upload_folder_appraisal_report_app')
 
 
+    
