@@ -16,7 +16,7 @@ levels = ['Level 0', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5']
 
 def clean_sheet(excel_file_path, employee_name):
     excel_file = pd.read_excel(excel_file_path)
-    csv_path = "appraisal_report_app/upload_folder/"+employee_name+".csv"
+    csv_path = "gcs://upload_folder_appraisal_report_app/upload_folder/"+employee_name+".csv"
     excel_file.to_csv(csv_path, index = 0, header=False)
     df_feedback = pd.DataFrame(pd.read_csv(csv_path))
     creator = df_feedback.iloc[0][1]

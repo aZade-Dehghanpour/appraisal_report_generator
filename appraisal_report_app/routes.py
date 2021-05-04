@@ -43,7 +43,7 @@ def upload_file():
                 appraisal_type = form.appraisal_type.data
 
                 #clean up the data in excel file
-                sheet = clean_sheet(excel_file_path = excel_file_path, employee_name = employee_name)
+                sheet = clean_sheet(excel_file_path = 'gcs://upload_folder_appraisal_report_app/'+excel_file_path , employee_name = employee_name)
                 #create a record for responsible People Lead in Database
                 create_people_lead = people_lead_record(sheet = sheet, people_lead_name = people_lead_name)
                 #create record for assessed employee in Database
