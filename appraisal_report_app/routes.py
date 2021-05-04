@@ -30,8 +30,6 @@ def upload_file():
             if request.files:
                 excel_file = request.files["excel_file"]
                 excel_file_name = secure_filename(excel_file.filename)
-                #excel_file_path = os.path.join(app.config['UPLOAD_FOLDER'], excel_file_name)
-                #excel_file.save(excel_file_path)
 
                 # uploading excel file on Google Cloud storage
                 excel_file_path = "%s/%s"%('upload_folder',excel_file_name)
